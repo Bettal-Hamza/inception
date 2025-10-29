@@ -1,12 +1,8 @@
 #!/bin/sh
 
-set -e
-
 if [ ! -d /var/lib/mysql/mysql ]; then
-    echo "🟡 Initializing MariaDB..."
     mysql_install_db --user=mysql --datadir=/var/lib/mysql > /dev/null
 
-    echo "🧠 Bootstrapping user + database..."
     cat <<EOF > /tmp/init.sql
 USE mysql;
 FLUSH PRIVILEGES;
@@ -21,5 +17,4 @@ EOF
     rm -f /tmp/init.sql
 fi
 
-echo "🚀 Starting MariaDB..."
 exec mysqld --user=mysql --datadir=/var/lib/mysql --bind-address=0.0.0.0 --port=3306

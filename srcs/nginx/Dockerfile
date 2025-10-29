@@ -8,9 +8,8 @@ RUN openssl req -x509 -nodes -days 365 \
   -newkey rsa:2048 \
   -keyout /etc/nginx/ssl/nginx.key \
   -out /etc/nginx/ssl/nginx.crt \
-  -subj "/C=MA/ST=Morroco/L=Kouribgha/O=42/CN=hbettal.42.fr"
+  -subj "/C=MA/ST=Morocco/L=Khouribga/O=1337/CN=hbettal.42.fr"
 
 COPY conf/nginx.conf /etc/nginx/nginx.conf
-
 
 CMD ["nginx", "-g", "daemon off;"]
