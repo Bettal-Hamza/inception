@@ -6,7 +6,7 @@ services:
       - "443:443"
     networks:
       - inception
-    restart: always
+    restart: unless-stopped
 
   mariadb:
     build: ./mariadb
@@ -16,10 +16,7 @@ services:
       - db_data:/var/lib/mysql
     networks:
       - inception
-    restart: always
-    ports:
-      - "3306:3306"
-
+    restart: unless-stopped
 
   wordpress:
     build: ./wordpress
@@ -31,7 +28,7 @@ services:
       - wp_data:/var/www/html
     networks:
       - inception
-    restart: always
+    restart: unless-stopped
 
 networks:
   inception:

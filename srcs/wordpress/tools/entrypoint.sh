@@ -26,8 +26,8 @@ if ! wp db tables --allow-root | grep -q "wp_posts"; then
     wp core install \
       --url="https://$DOMAIN_NAME" \
       --title="My Inception Site" \
-      --admin_user="admin" \
-      --admin_password="admin123" \
+      --admin_user="$WP_ADMIN_N" \
+      --admin_password="$WP_ADMIN_P" \
       --admin_email="admin@$DOMAIN_NAME" \
       --skip-email \
       --allow-root
