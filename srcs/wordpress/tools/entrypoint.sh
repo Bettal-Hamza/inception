@@ -9,8 +9,11 @@ done
 
 cd /var/www/html
 
-# Create wp-config.php if missing
+# Download WordPress if not exists
 if [ ! -f wp-config.php ]; then
+    echo "Downloading WordPress..."
+    wp core download --allow-root
+    
     echo "Creating wp-config.php..."
     wp config create \
       --dbname="$MYSQL_DATABASE" \
@@ -21,7 +24,7 @@ if [ ! -f wp-config.php ]; then
 fi
 
 # Install WordPress if tables are missing
-if ! wp db tables --allow-root | grep -q "wp_posts"; then
+if ! wp core is-installed --allow-root 2>/dev/null; then
     echo "Installing WordPress..."
     wp core install \
       --url="https://$DOMAIN_NAME" \
