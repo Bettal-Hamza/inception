@@ -25,11 +25,17 @@ if ! wp db tables --allow-root | grep -q "wp_posts"; then
     echo "Installing WordPress..."
     wp core install \
       --url="https://$DOMAIN_NAME" \
-      --title="My Inception Site" \
+      --title="$WP_TITLE" \
       --admin_user="$WP_ADMIN_N" \
       --admin_password="$WP_ADMIN_P" \
-      --admin_email="admin@$DOMAIN_NAME" \
+      --admin_email="$WP_ADMIN_E" \
       --skip-email \
+      --allow-root
+
+    echo "Creating additional WordPress user..."
+    wp user create "$WP_U_NAME" "$WP_U_EMAIL" \
+      --role="$WP_U_ROLE" \
+      --user_pass="$WP_U_PASS" \
       --allow-root
 fi
 
