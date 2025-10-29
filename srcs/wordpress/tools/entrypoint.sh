@@ -12,7 +12,14 @@ cd /var/www/html
 # Download WordPress if not exists
 if [ ! -f wp-config.php ]; then
     echo "Downloading WordPress..."
-    wp core download --allow-root
+    
+    # Try wp-cli first, if it fails use curl
+    if ! wp core download --allow-root 2>/dev/null; then
+        echo "WP-CLI failed, downloading with curl..."
+        curl -O https://wordpress.org/latest.tar.gz
+        tar -xzf latest.tar.gz --strip-components=1
+        rm latest.tar.gz
+    fi
     
     echo "Creating wp-config.php..."
     wp config create \

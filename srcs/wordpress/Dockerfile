@@ -23,6 +23,9 @@ RUN mv wp-cli.phar /usr/local/bin/wp
 
 RUN mkdir -p /run/php
 
+# Increase PHP memory limit for WordPress installation
+RUN echo "memory_limit = 256M" >> /etc/php81/php.ini
+
 COPY tools/entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
