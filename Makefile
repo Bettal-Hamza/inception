@@ -21,7 +21,5 @@ fclean: down
 re: fclean up
 
 create_dirs:
-	mkdir -p $(DATA_PATH)/wordpress
-	mkdir -p $(DATA_PATH)/mariadb
-
-.PHONY: all up down clean fclean re create_dirs
+	sudo mkdir -p $(DATA_PATH)/wordpress
+	sudo mkdir -p $(DATA_PATH)/mariadb

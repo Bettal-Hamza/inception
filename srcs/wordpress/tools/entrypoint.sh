@@ -7,9 +7,7 @@ done
 cd /var/www/html
 
 if [ ! -f wp-config.php ]; then
-    curl -O https://wordpress.org/latest.tar.gz
-    tar -xzf latest.tar.gz --strip-components=1
-    rm latest.tar.gz
+    wp core download --allow-root
     
     wp config create \
       --dbname="$MYSQL_DATABASE" \
@@ -26,7 +24,6 @@ if ! wp core is-installed --allow-root 2>/dev/null; then
       --admin_user="$WP_ADMIN_N" \
       --admin_password="$WP_ADMIN_P" \
       --admin_email="$WP_ADMIN_E" \
-      --skip-email \
       --allow-root
 
     wp user create "$WP_U_NAME" "$WP_U_EMAIL" \
@@ -35,4 +32,4 @@ if ! wp core is-installed --allow-root 2>/dev/null; then
       --allow-root
 fi
 
-exec php-fpm81 -F
+exec php-fpm83 -F
