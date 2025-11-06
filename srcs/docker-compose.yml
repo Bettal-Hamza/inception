@@ -2,7 +2,7 @@ services:
 
   nginx:
     container_name: nginx
-    build: ./nginx
+    build: ./requirements/nginx/
     image: nginx:mine
     ports:
       - "443:443"
@@ -16,7 +16,7 @@ services:
 
   mariadb:
     container_name: mariadb
-    build: ./mariadb
+    build: ./requirements/mariadb/
     image: mariadb:mine
     env_file:
       - .env
@@ -29,7 +29,7 @@ services:
   wordpress:
     container_name: wordpress
     image: wordpress:mine
-    build: ./wordpress
+    build: ./requirements/wordpress
     depends_on:
       - mariadb
     env_file:

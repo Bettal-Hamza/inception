@@ -13,7 +13,7 @@ down:
 clean: down
 	docker system prune -af
 
-fclean: down
+fclean: clean
 	$(COMPOSE) down -v
 	sudo rm -rf $(DATA_PATH)/wordpress/*
 	sudo rm -rf $(DATA_PATH)/mariadb/*

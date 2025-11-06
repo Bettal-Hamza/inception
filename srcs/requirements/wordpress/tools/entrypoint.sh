@@ -1,14 +1,16 @@
 #!/bin/sh
 
+echo "memory_limit = 512M" > /etc/php83/conf.d/memory.ini
+
 until mysql -h mariadb -u"$MYSQL_USER" -p"$MYSQL_PASSWORD" -e "USE $MYSQL_DATABASE;" 2>/dev/null; do
     sleep 2
 done
 
 cd /var/www/html
 
+
 if [ ! -f wp-config.php ]; then
-    wp core download --allow-root
-    
+    wp core download  --allow-root
     wp config create \
       --dbname="$MYSQL_DATABASE" \
       --dbuser="$MYSQL_USER" \
