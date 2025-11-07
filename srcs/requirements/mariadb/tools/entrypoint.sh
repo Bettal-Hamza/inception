@@ -12,7 +12,7 @@ GRANT ALL PRIVILEGES ON \`${MYSQL_DATABASE}\`.* TO '${MYSQL_USER}'@'%';
 FLUSH PRIVILEGES;
 EOF
 
-    exec mysqld --user=mysql --datadir=/var/lib/mysql < /tmp/init.sql
+    mysqld --user=mysql --datadir=/var/lib/mysql < /tmp/init.sql
     rm -f /tmp/init.sql
 fi
 
