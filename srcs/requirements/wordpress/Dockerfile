@@ -6,8 +6,6 @@ RUN apk update && apk add --no-cache \
     php83-mysqli \
     php83-json \
     php83-phar \
-    php83-mbstring \
-    php83-iconv \
     curl \
     mariadb-client
 
