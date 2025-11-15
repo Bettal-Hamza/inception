@@ -1,6 +1,6 @@
 NAME = inception
 COMPOSE = docker-compose -f ./srcs/docker-compose.yml
-DATA_PATH = /home/hbettal/data
+DATA_PATH = /home/lbznaz/data
 
 all: up
 

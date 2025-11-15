@@ -29,6 +29,15 @@ if ! wp core is-installed --allow-root 2>/dev/null; then
       --allow-root
 fi
 
+# Create admin user if it doesn't exist
+if ! wp user get "$WP_ADMIN_N" --allow-root 2>/dev/null; then
+    wp user create "$WP_ADMIN_N" "$WP_ADMIN_E" \
+      --role=administrator \
+      --user_pass="$WP_ADMIN_P" \
+      --allow-root
+fi
+
+# Create regular user if it doesn't exist
 if ! wp user get "$WP_U_NAME" --allow-root 2>/dev/null; then
     wp user create "$WP_U_NAME" "$WP_U_EMAIL" \
       --role="$WP_U_ROLE" \
